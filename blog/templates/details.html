@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="download" style="margin-top:50px">
+    <h3 style="margin-bottom:30px">{{post.artists}} {{post.title}}</h3>
+    <h5>{{post.created_on}}</h5>
+    <img src="{{post.img.url}}" alt="{{post.artists}}" style="width:300px;height:300px;margin-bottom:20px"/>
+    <h4>Download {{post.title}} by {{post.artists}} click button below</h4>
+    <a href="{{post.src.url}}" class="btn btn-info" role="button" style="margin-bottom:40px">Download</a>
+    <button id="ASong" onClick="playPause()" style="border:none;background:transparent;margin-left:50px">
+  <audio
+    src="{{post.src.url}}"
+    autoplay
+    loop
+  ></audio>
+<i class="material-icons" style="font-size:50px">play_circle</i>
+</button>
+
+<script>
+  var aud = document.getElementById("ASong").children[0];
+  var isPlaying = false;
+  aud.pause();
+
+  function playPause() {
+    if (isPlaying) {
+      aud.pause();
+    } else {
+      aud.play();
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
+    <h4>Lyrics:</h4>
+    <p id="lyrics" >{{post.lyrics}}</p>
+</div>
+{% endblock %}
